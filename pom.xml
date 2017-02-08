@@ -12,7 +12,7 @@
         <scalaBinaryVersion>2.11</scalaBinaryVersion>
         <scalatest.version>3.0.1</scalatest.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <logback.version>1.1.7</logback.version>
+        <logback.version>1.1.10</logback.version>
         <maven.release.version>2.5.3</maven.release.version>
         <maven.scm.version>1.9.2</maven.scm.version>
 
@@ -20,9 +20,11 @@
         <branch.name>master</branch.name>
 
         <BUILD_NUMBER>local</BUILD_NUMBER>
-        <scalacheck.version>1.13.2</scalacheck.version>
+        <scalacheck.version>1.13.4</scalacheck.version>
         <akka.version>2.4.16</akka.version>
         <akka-http.version>10.0.3</akka-http.version>
+        <logstash-logback-encoder.version>4.8</logstash-logback-encoder.version>
+        <slf4j.version>1.7.22</slf4j.version>
     </properties>
 
     <dependencyManagement>
@@ -91,7 +93,7 @@
             <dependency>
                 <groupId>net.logstash.logback</groupId>
                 <artifactId>logstash-logback-encoder</artifactId>
-                <version>4.7</version>
+                <version>${logstash-logback-encoder.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -101,7 +103,7 @@
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.21</version>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <dependency>
