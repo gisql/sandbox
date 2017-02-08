@@ -1,7 +1,6 @@
-FROM openjdk:8-jre-alpine
+FROM quay.io/clearscore/cs-java
 
 COPY sandbox.jar /
 COPY start.sh /
-COPY start-aws.sh /
 
 CMD ["/bin/bash", "start.sh"]

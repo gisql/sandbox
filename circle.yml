@@ -1,7 +1,34 @@
 machine:
+  timezone:
+    UTC
   java:
     version: openjdk8
+  services:
+    - docker
 
 dependencies:
   override:
-    - mvn --fail-never dependency:go-offline || true
+    - mvn package
+
+compile:
+  override:
+    - cd target/docker-src
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS -e circleci@clearscore.com quay.io
+    - docker build --rm=false -t $CIRCLE_PROJECT_REPONAME .
+
+test:
+  override:
+    - echo 'tests covered by maven'
+
+deployment:
+  nexus:
+    branch: /.*/
+    commands:
+      - mvn deploy
+  quayio:
+    branch: master
+    commands:
+      - docker tag $CIRCLE_PROJECT_REPONAME $DOCKER_REGISTRY/$ORGANIZATION/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+      - docker push $DOCKER_REGISTRY/$ORGANIZATION/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
+      - docker tag $CIRCLE_PROJECT_REPONAME $DOCKER_REGISTRY/$ORGANIZATION/$CIRCLE_PROJECT_REPONAME:latest
+      - docker push $DOCKER_REGISTRY/$ORGANIZATION/$CIRCLE_PROJECT_REPONAME:latest
