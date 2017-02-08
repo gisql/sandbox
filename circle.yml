@@ -12,9 +12,8 @@ dependencies:
 
 compile:
   override:
-    - cd target/docker-src
     - docker login -u $DOCKER_USER -p $DOCKER_PASS -e circleci@clearscore.com quay.io
-    - docker build --rm=false -t $CIRCLE_PROJECT_REPONAME .
+    - docker build --rm=false -t $CIRCLE_PROJECT_REPONAME target/docker-src
 
 test:
   override:
