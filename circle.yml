@@ -20,13 +20,10 @@ test:
     - echo 'tests covered by maven'
 
 deployment:
-  nexus:
-    branch: /.*/
-    commands:
-      - mvn -DskipTests=true deploy -s jfrog-settings.xml
   quayio:
     branch: master
     commands:
+      - mvn -DskipTests=true deploy -s jfrog-settings.xml
       - docker tag $CIRCLE_PROJECT_REPONAME $DOCKER_REGISTRY/$ORGANIZATION/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
       - docker push $DOCKER_REGISTRY/$ORGANIZATION/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BUILD_NUM
       - docker tag $CIRCLE_PROJECT_REPONAME $DOCKER_REGISTRY/$ORGANIZATION/$CIRCLE_PROJECT_REPONAME:latest
