@@ -377,12 +377,12 @@
     </scm>
     <distributionManagement>
         <snapshotRepository>
-            <id>snapshots</id>
+            <id>cs-snapshots</id>
             <name>clearscoredev-snapshots</name>
             <url>https://clearscoredev.jfrog.io/clearscoredev/libs-snapshot-local</url>
         </snapshotRepository>
         <repository>
-            <id>releaases</id>
+            <id>cs-releaases</id>
             <name>clearscoredev-releases</name>
             <url>https://clearscoredev.jfrog.io/clearscoredev/libs-release</url>
         </repository>

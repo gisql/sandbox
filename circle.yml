@@ -8,7 +8,7 @@ machine:
 
 dependencies:
   override:
-    - mvn package
+    - mvn package -s jfrog-settings.xml
 
 compile:
   override:
@@ -23,7 +23,7 @@ deployment:
   nexus:
     branch: /.*/
     commands:
-      - mvn -DskipTests=true deploy
+      - mvn -DskipTests=true deploy -s jfrog-settings.xml
   quayio:
     branch: master
     commands:
