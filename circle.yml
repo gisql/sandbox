@@ -23,7 +23,7 @@ deployment:
   nexus:
     branch: /.*/
     commands:
-      - mvn deploy
+      - mvn -DskipTests=true deploy
   quayio:
     branch: master
     commands:
