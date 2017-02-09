@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="true" scan="true" scanPeriod="5 seconds">
+    <appender name="OUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+    </appender>
+{{range tree "service/sandbox/logging"}}{{if ne .Key "ROOT"}}
+    <logger name="{{.Key}}">
+        <level value="{{.Value}}"/>
+    </logger>{{end}}{{end}}
+
+    <root>
+        <level value="{{keyOrDefault "service/sandbox/logging/ROOT" "WARN"}}"/>
+        <appender-ref ref="OUT"/>
+    </root>
+</configuration>
